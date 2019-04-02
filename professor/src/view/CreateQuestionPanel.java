@@ -23,7 +23,7 @@ public class CreateQuestionPanel extends JPanel{
         //TODO: add add answer button from task#18
         //TODO: add save question button from task#17
         //TODO: add quiz name text field from task#8
-        //TODO: create save quiz button from task#12
+        buttonsAndQuizNamePane.add(new saveQuizButton());
         add(buttonsAndQuizNamePane, BorderLayout.SOUTH);
     }
 }
