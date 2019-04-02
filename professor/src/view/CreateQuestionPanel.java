@@ -11,7 +11,7 @@ public class CreateQuestionPanel extends JPanel{
         questionPanel.setPreferredSize(new Dimension(600, 75));
         //TODO: add Create Question Text Field from task#10
         add(questionPanel, BorderLayout.NORTH);
-        
+
         JScrollPane answersPanel = new JScrollPane();
         //TODO: create checkboxes from task#21
         //TODO: show answer text for task#22
