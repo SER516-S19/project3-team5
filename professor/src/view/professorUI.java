@@ -4,12 +4,13 @@ import java.awt.Dimension;
 
 import javax.swing.*;
 
-
 /**
  * Class to create Professor UI Frame and add all panels in the frame
- * @author: Naren kumar Konchada
- * @since:  04/01/2019
-*/
+ * @author narenkumarkonchada
+ * @version 1.1
+ * @since 04/02/2019
+ *
+ */
 public class professorUI extends JFrame {
     
     //title of the Frame
