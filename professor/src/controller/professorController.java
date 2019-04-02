@@ -1,4 +1,4 @@
 package controller;
 
-public class professorController {
+public class ProfessorController {
 }
