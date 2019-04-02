@@ -2,7 +2,7 @@ package view;
 
 import java.awt.Dimension;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 
 /**
@@ -22,7 +22,7 @@ public class professorUI extends JFrame {
         this.setMinimumSize(new Dimension(800, 600));
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        this.add(new CreateQuestionPanel());
         
         //Display the Frame
         this.pack();
