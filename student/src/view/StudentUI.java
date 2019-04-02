@@ -11,6 +11,7 @@ public class StudentUI {
         studentApp.setTitle("Student Quiz Taker");
         JPanel quizPanel = new JPanel();
         quizPanel.add(new GiveUpButton(), BorderLayout.CENTER);
+        quizPanel.add(new SubmitButton(), BorderLayout.CENTER);
         studentApp.add(quizPanel, BorderLayout.CENTER);
         studentApp.setVisible(true);
     }
