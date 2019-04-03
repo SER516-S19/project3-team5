@@ -8,8 +8,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 /**
  * Class CreateQuestionPanel to create Quiz by Professor
@@ -25,7 +27,12 @@ public class CreateQuestionPanel extends JPanel{
         setLayout(new BorderLayout());
         JPanel questionPanel = new JPanel();
         questionPanel.setPreferredSize(new Dimension(600, 75));
-        //TODO: add Create Question Text Field from task#10
+        
+        JLabel labelName = new JLabel("QUESTION: ");
+        JTextField textFieldName = new JTextField(60);
+        labelName.setLabelFor(textFieldName);
+        questionPanel.add(labelName);
+        questionPanel.add(textFieldName);
         add(questionPanel, BorderLayout.NORTH);
 
         JScrollPane answersPanel = new JScrollPane();
@@ -53,6 +60,7 @@ public class CreateQuestionPanel extends JPanel{
                 System.exit(0);
             }
         });
+        buttonsAndQuizNamePane.add(saveQuizButton);
         add(buttonsAndQuizNamePane, BorderLayout.SOUTH);
     }
 }
