@@ -1,9 +1,25 @@
 package view;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
+/**
+ * Class CreateQuestionPanel to create Quiz by Professor
+ * @author narenkumarkonchada
+ * @version 1.1
+ * @since 04/02/2019
+ *
+ */
 public class CreateQuestionPanel extends JPanel{
+	
     public CreateQuestionPanel(){
         super();
         setLayout(new BorderLayout());
@@ -23,7 +39,20 @@ public class CreateQuestionPanel extends JPanel{
         //TODO: add add answer button from task#18
         //TODO: add save question button from task#17
         //TODO: add quiz name text field from task#8
-        buttonsAndQuizNamePane.add(new saveQuizButton());
+        
+        JButton saveQuizButton = new JButton("Save Quiz");  
+        saveQuizButton.setBounds(50,100,95,30);   
+        buttonsAndQuizNamePane.add(saveQuizButton);  
+        saveQuizButton.setLayout(null);  
+        saveQuizButton.setVisible(true);
+        saveQuizButton.setBackground(Color.RED);
+        saveQuizButton.setOpaque(true);
+        saveQuizButton.setBorderPainted(false);
+        saveQuizButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                System.exit(0);
+            }
+        });
         add(buttonsAndQuizNamePane, BorderLayout.SOUTH);
     }
 }
