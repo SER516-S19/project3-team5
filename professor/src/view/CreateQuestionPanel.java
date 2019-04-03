@@ -9,7 +9,11 @@ public class CreateQuestionPanel extends JPanel{
         setLayout(new BorderLayout());
         JPanel questionPanel = new JPanel();
         questionPanel.setPreferredSize(new Dimension(600, 75));
-        //TODO: add Create Question Text Field from task#10
+        JLabel labelName = new JLabel("QUESTION: ");
+        JTextField textFieldName = new JTextField(60);
+        labelName.setLabelFor(textFieldName);
+        questionPanel.add(labelName);
+        questionPanel.add(textFieldName);
         add(questionPanel, BorderLayout.NORTH);
 
         JScrollPane answersPanel = new JScrollPane();
@@ -24,6 +28,7 @@ public class CreateQuestionPanel extends JPanel{
         //TODO: add save question button from task#17
         //TODO: add quiz name text field from task#8
         buttonsAndQuizNamePane.add(new saveQuizButton());
+
         add(buttonsAndQuizNamePane, BorderLayout.SOUTH);
     }
 }
