@@ -3,25 +3,31 @@ package model;
 import java.util.ArrayList;
 
 /**
- * @author      Koushik Kotamraju, Cecilia La Place
+ * @author      Koushik Kotamraju, Cecilia La Place, Aravinda Sai Kondamari
  * @version     1.0
  * @since       1.0
  */
 public class Question {
-    private String content;
-    private ArrayList<String> choices;
+    private String title;
+    private ArrayList<String> options;
     private String correctAnswer;
+
+    /**
+     * Default constructor
+     */
+    public Question() {
+    }
 
     /**
      * Constructor for Question
      *
-     * @param content
-     * @param choices
+     * @param title
+     * @param options
      * @param correctAnswer
      */
-    public Question(String content, ArrayList<String> choices, String correctAnswer) {
-        this.content = content;
-        this.choices = choices;
+    public Question(String title, ArrayList<String> options, String correctAnswer) {
+        this.title = title;
+        this.options = options;
         this.correctAnswer = correctAnswer;
     }
 
@@ -30,8 +36,8 @@ public class Question {
      *
      * @return question content
      */
-    public String getContent() {
-        return this.content;
+    public String getTitle() {
+        return this.title;
     }
 
     /**
@@ -39,8 +45,8 @@ public class Question {
      *
      * @return list of choices
      */
-    public ArrayList<String> getChoices() {
-        return this.choices;
+    public ArrayList<String> getOptions() {
+        return this.options;
     }
 
     /**
@@ -57,8 +63,8 @@ public class Question {
      *
      * @param content
      */
-    public void setContent(String content) {
-        this.content = content;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     /**
@@ -66,14 +72,24 @@ public class Question {
      *
      * @param choices
      */
-    public void setChoices(ArrayList<String> choices) {
-        this.choices = choices;
+    public void setOptions(ArrayList<String> options) {
+        this.options = options;
+    }
+
+    /**
+     * Add Choice to Choice list
+     */
+    public void setOption(String option){
+        if(options == null){
+            options = new ArrayList<>();
+        }
+        options.add(option);
     }
 
     /**
      * Set question's correct answer
      *
-     * @param choices
+     * @param correctAnswer
      */
     public void setCorrectAnswer(String correctAnswer) {
         this.correctAnswer = correctAnswer;

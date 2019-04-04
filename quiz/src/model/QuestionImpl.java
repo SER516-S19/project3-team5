@@ -3,12 +3,18 @@ package model;
 import java.util.ArrayList;
 
 /**
- * @author      Cecilia La Place
+ * @author      Cecilia La Place, Aravinda Sai Kondamari
  * @version     1.0
  * @since       1.0
  */
 public class QuestionImpl implements QuestionsDAO{
     private ArrayList<Question> questions;
+
+    /**
+     * Default constructor
+     */
+    public QuestionImpl() {
+    }
 
     /**
      * Constructor for QuestionImpl
@@ -39,22 +45,28 @@ public class QuestionImpl implements QuestionsDAO{
     }
 
     /**
-     * Set question at end of array
-     *
-     * @param question
-     */
-    public void setQuestion(Question question) {
-        this.questions.add(question);
-    }
-
-    /**
      * Set question at location index (overload)
      *
      * @param question
      * @param loc
      */
     public void setQuestion(Question question, int loc) {
+        if(questions == null){
+            questions = new ArrayList<>();
+        }
         this.questions.add(loc, question);
+    }
+
+    /**
+     * Add question to questions list
+     *
+     * @param question
+     */
+    public void setQuestion(Question question) {
+        if(questions == null){
+            questions = new ArrayList<>();
+        }
+        this.questions.add(question);
     }
 
     /**
