@@ -12,8 +12,8 @@ import javax.swing.*;
 /**
  * Class CreateQuestionPanel to create Quiz by Professor
  *
- * @author narenkumarkonchada
- * @version 1.1
+ * @author narenkumarkonchada, Koushik Kotamraju
+ * @version 1.2
  * @since 04/02/2019
  */
 public class CreateQuestionPanel extends JPanel {
@@ -38,9 +38,11 @@ public class CreateQuestionPanel extends JPanel {
         CreateAnswerPanel option3 = new CreateAnswerPanel();
         CreateAnswerPanel option4 = new CreateAnswerPanel();
         ButtonGroup answerGroup = new ButtonGroup();
-        answerGroup.add(option1.jRadioButton);
-        answerGroup.add(option2.jRadioButton);
-        answerGroup.add(option3.jRadioButton);
+        answerGroup.add(option1.answerRadioButton);
+        answerGroup.add(option2.answerRadioButton);
+        answerGroup.add(option3.answerRadioButton);
+        answerGroup.add(option4.answerRadioButton);
+        option1.answerRadioButton.setSelected(true);
 
         //TODO: show answer text for task#22
         add(answersPanel, BorderLayout.CENTER);
