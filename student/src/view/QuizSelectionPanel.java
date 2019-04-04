@@ -10,6 +10,7 @@ public class QuizSelectionPanel extends JPanel{
     private List<String> quizNames = new ArrayList<>();
     private JPanel quizzesPane = new JPanel();
     private JPanel buttonPane = new JPanel();
+    private JPanel radioButton = new JPanel();
     public QuizSelectionPanel(){
         super();
         setLayout(new BorderLayout());
@@ -20,6 +21,7 @@ public class QuizSelectionPanel extends JPanel{
 
         addQuizzesPane();
         addButtonPane();
+        addRadioButton();
     }
 
     private void addQuizzesPane(){
@@ -45,5 +47,21 @@ public class QuizSelectionPanel extends JPanel{
 
         buttonPane.add(new JButton("Select Quiz"));
         add(buttonPane, BorderLayout.PAGE_END);
+    }
+    
+    private void addRadioButton() {
+    	JScrollPane radioButton1 = new JScrollPane();
+    	
+    	radioButton option1 = new radioButton();
+    	radioButton option2 = new radioButton();
+    	radioButton option3 = new radioButton();
+    	radioButton option4 = new radioButton();
+        
+    	ButtonGroup answerGroup = new ButtonGroup();
+        answerGroup.add(option1.answerRadioButton);
+        answerGroup.add(option2.answerRadioButton);
+        answerGroup.add(option3.answerRadioButton);
+        answerGroup.add(option4.answerRadioButton);
+        option1.answerRadioButton.setSelected(true);
     }
 }
