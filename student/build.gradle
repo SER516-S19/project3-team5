@@ -12,6 +12,6 @@ dependencies {
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.8'
 }
 
-sourceSets.main.java.srcDir "../src/main/java"
+sourceSets.main.java.srcDir "../quiz/src/main/java"
 
 mainClassName = 'view.StudentUI'
