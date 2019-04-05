@@ -52,16 +52,19 @@ public class QuizSelectionPanel extends JPanel{
     private void addRadioButton() {
     	JScrollPane radioButton1 = new JScrollPane();
     	
-    	radioButton option1 = new radioButton();
-    	radioButton option2 = new radioButton();
-    	radioButton option3 = new radioButton();
-    	radioButton option4 = new radioButton();
+    	JRadioButton option1 = new JRadioButton();
+    	JRadioButton option2 = new JRadioButton();
+    	JRadioButton option3 = new JRadioButton();
+    	JRadioButton option4 = new JRadioButton();
         
     	ButtonGroup answerGroup = new ButtonGroup();
+        /*
         answerGroup.add(option1.answerRadioButton);
         answerGroup.add(option2.answerRadioButton);
         answerGroup.add(option3.answerRadioButton);
         answerGroup.add(option4.answerRadioButton);
+
         option1.answerRadioButton.setSelected(true);
+        */
     }
 }
