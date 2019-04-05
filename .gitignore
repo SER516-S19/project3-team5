@@ -70,6 +70,7 @@ nb-configuration.xml
 ## Gradle
 ##########################
 .gradle
+/build/
 /professor/build/
 /student/build
 
