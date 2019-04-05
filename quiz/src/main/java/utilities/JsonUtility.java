@@ -1,4 +1,4 @@
-package main.java.utilities;
+package utilities;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.io.IOException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 //import model.Question;
-import main.java.model.QuestionImpl;
+import model.QuestionImpl;
 
 /**
  * Read README.md file to get rid of the errors.
