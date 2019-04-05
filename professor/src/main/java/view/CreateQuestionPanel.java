@@ -12,80 +12,118 @@ import javax.swing.*;
 /**
  * Class CreateQuestionPanel to create Quiz by Professor
  *
- * @author narenkumarkonchada, Koushik Kotamraju
+ * @author narenkumarkonchada, Koushik Kotamraju, Cecilia La Place, David Lahtinen
  * @version 1.2
  * @since 04/02/2019
  */
 public class CreateQuestionPanel extends JPanel {
 
+    private final int ANSWERLENGTH = 4;
+    private final int SAVEQUIZ = 0;
+    private final int SAVEQUES = 1;
+
+    /**
+     * Creates the question, answer, and save panels.
+     */
     public CreateQuestionPanel() {
         super();
-        setLayout(new BorderLayout());
-        JPanel questionPanel = new JPanel();
-        questionPanel.setPreferredSize(new Dimension(600, 200));
-
-        JLabel labelName = new JLabel("QUESTION: ");
-        JTextField textFieldName = new JTextField(60);
-        labelName.setLabelFor(textFieldName);
-        questionPanel.add(labelName);
-        questionPanel.add(textFieldName);
-        add(questionPanel, BorderLayout.NORTH);
+        this.setLayout(new BorderLayout());
+        JPanel questionPanel = makeQuestion();
+        JPanel savePanel = makeSave();
 
         JScrollPane answersPanel = new JScrollPane();
-        //TODO: create checkboxes from task#21
-        CreateAnswerPanel option1 = new CreateAnswerPanel();
-        CreateAnswerPanel option2 = new CreateAnswerPanel();
-        CreateAnswerPanel option3 = new CreateAnswerPanel();
-        CreateAnswerPanel option4 = new CreateAnswerPanel();
-        ButtonGroup answerGroup = new ButtonGroup();
-        answerGroup.add(option1.answerRadioButton);
-        answerGroup.add(option2.answerRadioButton);
-        answerGroup.add(option3.answerRadioButton);
-        answerGroup.add(option4.answerRadioButton);
-        option1.answerRadioButton.setSelected(true);
-
         //TODO: show answer text for task#22
-        add(answersPanel, BorderLayout.CENTER);
-        questionPanel.add(option1);
-        questionPanel.add(option2);
-        questionPanel.add(option3);
-        questionPanel.add(option4);
-        JPanel buttonsAndQuizNamePane = new JPanel();
-        buttonsAndQuizNamePane.setLayout(new GridLayout(2, 2));
-        buttonsAndQuizNamePane.setPreferredSize(new Dimension(600, 75));
-        //TODO: add add answer button from task#18
-        //TODO: add save question button from task#17
+        CreateAnswerPanel answerPanels[] = new CreateAnswerPanel[ANSWERLENGTH];
+        ButtonGroup answerGroup = new ButtonGroup();
+
+        for (int i = 0; i < ANSWERLENGTH; i++){
+            answerPanels[i] = new CreateAnswerPanel();
+            answerGroup.add(answerPanels[i].getRadioButton());
+            if (i == 0){
+                answerPanels[i].getRadioButton().setSelected(true);
+            }
+            questionPanel.add(answerPanels[i]);
+        }
+
+        this.add(questionPanel, BorderLayout.NORTH);
+        this.add(answersPanel, BorderLayout.CENTER);
+        this.add(savePanel, BorderLayout.SOUTH);
+    }
+
+    /**
+     * Creates the question entry field
+     * @return questionPanel
+     */
+    public JPanel makeQuestion(){
+        JPanel questionPanel = new JPanel();
+        questionPanel.setPreferredSize(new Dimension(700, 300));
+
+        JLabel labelName = new JLabel("QUESTION: ");
+        JTextArea textArea = new JTextArea(5, 50);
+
+        labelName.setLabelFor(textArea);
+        questionPanel.add(labelName);
+        questionPanel.add(textArea);
+        return questionPanel;
+    }
+
+    /**
+     * Creates the save panel
+     * @return savePanel
+     */
+    public JPanel makeSave(){
+        JPanel savePanel = new JPanel();
+        savePanel.setLayout(new GridLayout(2, 2));
+        savePanel.setPreferredSize(new Dimension(400, 100));
+
         //TODO: add quiz name text field from task#8
 
-        JButton saveQuizButton = new JButton("Save Quiz");
-        saveQuizButton.setBounds(50, 100, 95, 30);
-        buttonsAndQuizNamePane.add(saveQuizButton);
-        saveQuizButton.setLayout(null);
-        saveQuizButton.setVisible(true);
-        saveQuizButton.setBackground(Color.RED);
-        saveQuizButton.setOpaque(true);
-        saveQuizButton.setBorderPainted(false);
-        saveQuizButton.addActionListener(new ActionListener() {
+        JButton saveQuizBtn = makeSaveButton(SAVEQUIZ);
+        JButton saveQuestionBtn = makeSaveButton(SAVEQUES);
+
+        saveQuizBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
             }
         });
-        buttonsAndQuizNamePane.add(saveQuizButton);
-        add(buttonsAndQuizNamePane, BorderLayout.SOUTH);
-        JButton saveQuestion = new JButton("Save Question");
-        saveQuestion.setBounds(50, 100, 95, 30);
-        buttonsAndQuizNamePane.add(saveQuestion);
-        saveQuestion.setLayout(null);
-        saveQuestion.setVisible(true);
-        saveQuestion.setBackground(Color.GREEN);
-        saveQuestion.setOpaque(true);
-        saveQuestion.setBorderPainted(false);
-        saveQuestion.addActionListener(new ActionListener() {
+
+        saveQuestionBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
             }
         });
-        buttonsAndQuizNamePane.add(saveQuestion);
-        add(buttonsAndQuizNamePane, BorderLayout.SOUTH);
+
+        savePanel.add(saveQuizBtn);
+        savePanel.add(saveQuestionBtn);
+        return savePanel;
+    }
+
+    /**
+     * Creates custom save buttons
+     * @return saveBtn
+     */
+    public JButton makeSaveButton(int btnType){
+        String name = "";
+        Color btnColor = null;
+        if (btnType == SAVEQUIZ){
+            name = "Save Quiz";
+            btnColor = Color.RED;
+        }
+        else if (btnType == SAVEQUES){
+            name = "Save Question";
+            btnColor = Color.GREEN;
+        }
+        else{
+            return null; // throw exception
+        }
+        // Create custom button
+        JButton saveBtn = new JButton(name);
+        saveBtn.setBounds(50, 100, 95, 30);
+        saveBtn.setLayout(null);
+        saveBtn.setVisible(true);
+        saveBtn.setBackground(btnColor);
+        saveBtn.setOpaque(true);
+        saveBtn.setBorderPainted(false);
+        return saveBtn;
     }
 }
