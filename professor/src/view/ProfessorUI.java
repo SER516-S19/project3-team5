@@ -11,16 +11,13 @@ import javax.swing.*;
  * @since 04/02/2019
  *
  */
-public class professorUI extends JFrame {
+public class ProfessorUI extends JFrame {
     
-    //title of the Frame
-    private static final String FRAME_TITLE = "Professor";
-    
-    professorUI() {
+    public ProfessorUI() {
         
         //setup Frame UI
-        this.setTitle(FRAME_TITLE);
-        this.setMinimumSize(new Dimension(800, 600));
+        this.setTitle("Quiz Maker");
+        this.setMinimumSize(new Dimension(800, 400));
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.add(new CreateQuestionPanel());
@@ -32,7 +29,6 @@ public class professorUI extends JFrame {
     }
     
     public static void main(String[] args) {
-
-        new professorUI();
+        new ProfessorUI();
     }
 }
