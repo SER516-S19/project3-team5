@@ -12,7 +12,7 @@ import javax.swing.*;
 /**
  * Class CreateQuestionPanel to create Quiz by Professor
  *
- * @author narenkumarkonchada, Koushik Kotamraju, Cecilia La Place
+ * @author narenkumarkonchada, Koushik Kotamraju, Cecilia La Place, David Lahtinen
  * @version 1.2
  * @since 04/02/2019
  */

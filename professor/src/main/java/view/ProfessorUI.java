@@ -1,7 +1,7 @@
 package view;
 
 import java.awt.Dimension;
-
+import view.CreateQuestionPanel;
 import javax.swing.*;
 
 /**
