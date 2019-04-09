@@ -7,6 +7,14 @@ import javax.swing.*;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.*;
 
+/**
+ *
+ * @author Siva Pranav Mandadi,
+ * @version 1.1
+ * 
+ */
+
+
 public class FileChooserPanel extends JPanel
         implements ActionListener {
     /*static private final*/ String newline = "\n";
