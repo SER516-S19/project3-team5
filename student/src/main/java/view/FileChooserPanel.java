@@ -29,7 +29,7 @@ public class FileChooserPanel extends JPanel
         //fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         //fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 
-        openButton = new JButton("Open a File...");
+        openButton = new JButton("Select The Quiz");
         openButton.addActionListener(this);
 
 
