@@ -7,7 +7,8 @@ import org.json.simple.parser.ParseException;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Iterator;
+import java.util.ArrayList;
+
 
 public class StudentController {
 	
@@ -17,21 +18,22 @@ public class StudentController {
 		JSONParser parser = new JSONParser();
 		try {
 
-            Object obj = parser.parse(new FileReader("C:\\SER516\\SampleQuiz.json"));
+            Object obj = parser.parse(new FileReader("C:\\Users\\Arch\\Documents\\GitHub\\project3-team5\\quizzes\\SampleQuiz.json"));
 
             JSONObject jsonObject = (JSONObject) obj;
-            System.out.println(jsonObject);
-            
-            JSONArray questions = (JSONArray) jsonObject.get("questions");
-            Iterator<String> iterator = questions.iterator();
-            while (iterator.hasNext()) {
-            	JSONArray options = (JSONArray) jsonObject.get("options");
-            	Iterator<String> iterator1 = options.iterator();
-            	 while (iterator1.hasNext()) {
-            		 System.out.println(iterator1.next());
-            	 }
-            	 
-            	 }
+                      
+            JSONArray questions= (JSONArray)jsonObject.get("questions");
+            for(int i=0;i<questions.size();i++) {
+            	JSONObject question=(JSONObject)questions.get(i);
+            	ArrayList options=(ArrayList)question.get("options");
+            	System.out.println(options);
+            	String questionTitle=(String)question.get("title");
+            	System.out.println(questionTitle);
+            	String correctAnswer=(String)question.get("correctAnswer");
+            	System.out.println(correctAnswer);
+           }
+            	
+      	 
             }
             
 		catch (FileNotFoundException e) {
