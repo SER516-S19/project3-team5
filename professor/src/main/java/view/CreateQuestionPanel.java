@@ -73,6 +73,7 @@ public class CreateQuestionPanel extends JPanel {
      */
     public JPanel makeSave(){
         JPanel savePanel = new JPanel();
+        JFrame parent = new JFrame();
         savePanel.setLayout(new GridLayout(2, 2));
         savePanel.setPreferredSize(new Dimension(400, 100));
 
@@ -83,7 +84,7 @@ public class CreateQuestionPanel extends JPanel {
 
         saveQuizBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+                JOptionPane.showMessageDialog(parent, "Do you want to Save the file?");
             }
         });
 
