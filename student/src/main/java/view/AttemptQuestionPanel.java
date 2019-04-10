@@ -14,7 +14,7 @@ import javax.swing.*;
 
 /**
  * Class that provides UI for student to attempt quiz
- * @author Archana Madhavan
+ * @author Archana Madhavan, Harika Kolli
  * @version 1.1
  * @since 4/4/2019
  *
@@ -83,7 +83,11 @@ public class AttemptQuestionPanel extends JPanel{
         });
 		submitButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                System.exit(0);
+            	try {
+					controller.StudentController.updateQuizPage();
+				} catch (Exception e1) {
+					System.out.println("Exception has been occured on submit");
+				}
             }
         });
 		navigateButtonPanel.add(giveUpButton);
