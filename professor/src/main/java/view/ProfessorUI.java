@@ -1,34 +1,20 @@
-package view;
+package main.java.view;
 
-import java.awt.Dimension;
-import view.CreateQuestionPanel;
+import main.java.controller.ProfessorController;
+import main.java.model.QuestionImpl;
+
 import javax.swing.*;
 
 /**
  * Class to create Professor UI Frame and add all panels in the frame
- * @author narenkumarkonchada
+ * @author Aravinda Sai Kondamari
  * @version 1.1
  * @since 04/02/2019
  *
  */
-public class ProfessorUI extends JFrame {
-    
-    public ProfessorUI() {
-        
-        //setup Frame UI
-        this.setTitle("Quiz Maker");
-        this.setMinimumSize(new Dimension(800, 400));
-        this.setResizable(false);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.add(new CreateQuestionPanel());
-        
-        //Display the Frame
-        this.pack();
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
-    }
-    
+public class ProfessorUI{
+
     public static void main(String[] args) {
-        new ProfessorUI();
+        new ProfessorController(new JFrame(), new ProfessorWelcomeUI(), new AddQuestionPanel(), new QuestionImpl());
     }
 }

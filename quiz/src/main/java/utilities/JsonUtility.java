@@ -1,4 +1,4 @@
-package utilities;
+package main.java.utilities;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.io.IOException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 //import model.Question;
-import model.QuestionImpl;
+import main.java.model.QuestionImpl;
 
 /**
  * Read README.md file to get rid of the errors.
@@ -26,7 +26,7 @@ public class JsonUtility {
 	 * @param questions
 	 * @param title
 	 */
-    public void writeToJson(QuestionImpl questions, String title){
+    public static void writeToJson(QuestionImpl questions, String title){
             ObjectMapper objectMapper = new ObjectMapper();
             String filePath = "quizzes/"+ title + ".json";
             try {
