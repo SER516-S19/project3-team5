@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,14 +22,21 @@ import javax.swing.*;
  *
  */
 public class AttemptQuestionPanel extends JPanel{
+
+    String questionTitle;
+    public static int questionID = 0;
 	private static final int SUBMIT = 0;
 	private static final int GIVEUP = 1;
 	private static final int ANSWERLENGTH = 4;
 	private char answerOptions[]= {'A','B','C','D'};
-	
-	AttemptQuestionPanel() {
+	private StudentUI student;
+	AttemptQuestionPanel(StudentUI student) {
 		super();
-        this.setLayout(new BorderLayout());
+		this.student = student;
+        getValuestoUpdate();
+        student.studentApp.revalidate();
+        student.studentApp.repaint();
+//        this.setLayout(new BorderLayout());
         JPanel questionPanel = addQuestionLabelPanel();
         JPanel navigateButtonPanel = addnavigateButtonPanel();
         JScrollPane answersPanel = new JScrollPane();
@@ -60,17 +68,18 @@ public class AttemptQuestionPanel extends JPanel{
 		JLabel questionTextLabel;
 		JPanel questionPanel=new JPanel();
 		questionPanel.setPreferredSize(new Dimension(700, 300));
-	questionTextLabel=new JLabel("This is a question for a student to answer to choose");
+	questionTextLabel=new JLabel();
+	questionTextLabel.setText(questionTitle);
     	questionPanel.add(questionTextLabel);
     	return questionPanel;
     }
 
 
-  private JLabel addQuestionTitle(String questionTitle) {
-    JLabel questionTextLabel;
-    questionTextLabel = new JLabel(questionTitle);
-    return questionTextLabel;
-	}
+//  private JLabel addQuestionTitle(String questionTitle) {
+//    JLabel questionTextLabel;
+//    questionTextLabel = new JLabel(questionTitle);
+//    return questionTextLabel;
+//	}
 	
 
 	/**
@@ -84,6 +93,7 @@ public class AttemptQuestionPanel extends JPanel{
 		navigateButtonPanel.setPreferredSize(new Dimension(400, 100));
 		JButton giveUpButton=addNavigateButton(GIVEUP);
 		JButton submitButton=addNavigateButton(SUBMIT);
+
 		
 		giveUpButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
@@ -92,26 +102,7 @@ public class AttemptQuestionPanel extends JPanel{
         });
 		submitButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                ArrayList<String> listNew = new ArrayList<>();
-            	try {
-                    Map<Integer,ArrayList> list = controller.StudentController.updateQuizPage();
-                    System.out.println(list);
-
-                   for(int l=0;l<list.size();l++)
-                   {
-                       ArrayList question = new ArrayList(list.get(l));
-                       System.out.println(question);
-                       for(int questionValue=0;questionValue<question.size();questionValue++)
-                       {
-                           System.out.println(question.get(questionValue));
-
-                       }
-                   }
-
-
-				} catch (Exception e1) {
-					System.out.println("Exception has been occured on submit");
-				}
+                student.openAttemptQuizPage();
             }
         });
 		navigateButtonPanel.add(giveUpButton);
@@ -119,7 +110,44 @@ public class AttemptQuestionPanel extends JPanel{
         
     	return navigateButtonPanel;
 	}
-	    
+
+	public void getValuestoUpdate()
+    {
+
+        ArrayList<String> listNew = new ArrayList<>();
+        try {
+            Map<Integer,ArrayList> list = controller.StudentController.updateQuizPage();
+            System.out.println(list);
+
+            //for(int l=0;l<list.size();l++)
+            //{
+                ArrayList question = new ArrayList(list.get(questionID));
+                System.out.println(question);
+
+                    for(int k=0;k<question.size();k++)
+                    {
+                        if(k==0)
+                        {
+                            questionTitle = question.get(k).toString();
+                            System.out.println(questionTitle);
+                        }
+                        else
+                        {
+                            //answer panel
+                        }
+
+                    }
+
+
+
+                questionID++;
+            //}
+
+
+        } catch (Exception e1) {
+            System.out.println("Exception has been occured on submit");
+        }
+    }
     /**
      * Creates custom navigate buttons
      * @return navigateButton

@@ -22,13 +22,14 @@ import javax.swing.filechooser.FileSystemView;
 public class StudentSelectQuiz extends JPanel implements ActionListener {
 	 // Jlabel to show the files user selects 
     static JLabel l;
-    JFrame studentFrame;
+    private StudentUI student;
+//    JFrame studentFrame;
     // a default constructor 
-    StudentSelectQuiz(JFrame studentFrame)
+    StudentSelectQuiz(StudentUI studentUI)
     {
         super();
 
-        this.studentFrame=studentFrame;
+        this.student=studentUI;
         // button to open open dialog
         JButton button2 = new JButton("Select Quiz");
 
@@ -81,10 +82,10 @@ public class StudentSelectQuiz extends JPanel implements ActionListener {
 //                 this.studentFrame.revalidate();
 //                 this.studentFrame.repaint();
 //
-
-                 this.add(new StartQuizPanel());
-                 this.revalidate();
-                 this.repaint();
+                 student.startQuizPage();
+                 //this.add(new StartQuizPanel());
+                // this.revalidate();
+                // this.repaint();
                  l.setText(j.getSelectedFile().getAbsolutePath()); 
              } 
              // if the user cancelled the operation 
