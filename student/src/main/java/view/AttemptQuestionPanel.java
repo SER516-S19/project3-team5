@@ -16,7 +16,7 @@ import javax.swing.*;
 
 /**
  * Class that provides UI for student to attempt quiz
- * @author Archana Madhavan, Harika Kolli
+ * @author Archana Madhavan, Harika Kolli,narenkumarkonchada
  * @version 1.1
  * @since 4/4/2019
  *
@@ -76,14 +76,6 @@ public class AttemptQuestionPanel extends JPanel{
     	return questionPanel;
     }
 
-
-//  private JLabel addQuestionTitle(String questionTitle) {
-//    JLabel questionTextLabel;
-//    questionTextLabel = new JLabel(questionTitle);
-//    return questionTextLabel;
-//	}
-	
-
 	/**
      * Creates the navigate panel
      * @return navigateButtonPanel
@@ -125,14 +117,12 @@ public class AttemptQuestionPanel extends JPanel{
             //for(int l=0;l<list.size();l++)
             //{
                 ArrayList question = new ArrayList(list.get(questionID));
-                System.out.println(question);
 
                     for(int k=0;k<question.size();k++)
                     {
                         if(k==0)
                         {
                             questionTitle = question.get(k).toString();
-                            System.out.println(questionTitle);
                         }
                         else if(k==1||k==2||k==3||k==4)
                         {
@@ -142,13 +132,8 @@ public class AttemptQuestionPanel extends JPanel{
                         }
 
                     }
-
-
-
                 questionID++;
             //}
-
-
         } catch (Exception e1) {
             System.out.println("Exception has been occured on submit");
         }
