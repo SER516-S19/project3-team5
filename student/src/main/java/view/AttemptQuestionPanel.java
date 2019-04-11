@@ -39,6 +39,7 @@ public class AttemptQuestionPanel extends JPanel{
 //        this.setLayout(new BorderLayout());
         JPanel questionPanel = addQuestionLabelPanel();
         JPanel navigateButtonPanel = addnavigateButtonPanel();
+
         JScrollPane answersPanel = new JScrollPane();
         AnswerOptionsPanel optionPanels[]= new AnswerOptionsPanel[ANSWERLENGTH];
         ButtonGroup answerGroup = new ButtonGroup();
@@ -47,7 +48,8 @@ public class AttemptQuestionPanel extends JPanel{
         for (int i = 0; i < ANSWERLENGTH; i++){
         	optionPanels[i] = new AnswerOptionsPanel();
             answerGroup.add(optionPanels[i].getRadioButton());
-            optionPanels[i].getRadioButton().setText(Character.toString(answerOptions[i]));
+            //int count = i+1;
+            optionPanels[i].getRadioButton().setText(answer.get(i));
             questionPanel.add(optionPanels[i]);
         }
         
@@ -110,6 +112,7 @@ public class AttemptQuestionPanel extends JPanel{
         
     	return navigateButtonPanel;
 	}
+    ArrayList<String> answer = new ArrayList<>();
 
 	public void getValuestoUpdate()
     {
@@ -131,9 +134,11 @@ public class AttemptQuestionPanel extends JPanel{
                             questionTitle = question.get(k).toString();
                             System.out.println(questionTitle);
                         }
-                        else
+                        else if(k==1||k==2||k==3||k==4)
                         {
                             //answer panel
+                            answer.add(question.get(k).toString());
+
                         }
 
                     }
