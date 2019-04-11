@@ -2,19 +2,20 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import javax.swing.*;
 
 
 /**
  * Class that provides UI for student to attempt quiz
- * @author Archana Madhavan
+ * @author Archana Madhavan, Harika Kolli
  * @version 1.1
  * @since 4/4/2019
  *
@@ -55,14 +56,15 @@ public class AttemptQuestionPanel extends JPanel{
      */
 	private JPanel addQuestionLabelPanel()
     {
-		
+
 		JLabel questionTextLabel;
 		JPanel questionPanel=new JPanel();
 		questionPanel.setPreferredSize(new Dimension(700, 300));
-    	questionTextLabel=new JLabel("This is a question for a student to answer to chooseThis is a question for a student to answer to chooseThis is a question for a student to answer to choose");
+	questionTextLabel=new JLabel("This is a question for a student to answer to choose");
     	questionPanel.add(questionTextLabel);
     	return questionPanel;
     }
+
 
   private JLabel addQuestionTitle(String questionTitle) {
     JLabel questionTextLabel;
@@ -70,6 +72,7 @@ public class AttemptQuestionPanel extends JPanel{
     return questionTextLabel;
 	}
 	
+
 	/**
      * Creates the navigate panel
      * @return navigateButtonPanel
@@ -89,7 +92,26 @@ public class AttemptQuestionPanel extends JPanel{
         });
 		submitButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                System.exit(0);
+                ArrayList<String> listNew = new ArrayList<>();
+            	try {
+                    Map<Integer,ArrayList> list = controller.StudentController.updateQuizPage();
+                    System.out.println(list);
+
+                   for(int l=0;l<list.size();l++)
+                   {
+                       ArrayList question = new ArrayList(list.get(l));
+                       System.out.println(question);
+                       for(int questionValue=0;questionValue<question.size();questionValue++)
+                       {
+                           System.out.println(question.get(questionValue));
+
+                       }
+                   }
+
+
+				} catch (Exception e1) {
+					System.out.println("Exception has been occured on submit");
+				}
             }
         });
 		navigateButtonPanel.add(giveUpButton);
