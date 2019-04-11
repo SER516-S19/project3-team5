@@ -20,8 +20,11 @@ public class StudentUI {
         studentApp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         studentApp.setSize(800, 600);
         studentApp.setTitle("Student Quiz Taker");
-        //studentApp.add(new FileChooserPanel());
-        studentApp.add(new AttemptQuestionPanel());
+        studentApp.add(new StudentSelectQuiz(studentApp));
+
+
+        //studentApp.add(new AttemptQuestionPanel());
+
         studentApp.pack();
         studentApp.setLocationRelativeTo(null);
         studentApp.setVisible(true);

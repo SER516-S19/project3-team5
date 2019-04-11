@@ -59,10 +59,16 @@ public class AttemptQuestionPanel extends JPanel{
 		JLabel questionTextLabel;
 		JPanel questionPanel=new JPanel();
 		questionPanel.setPreferredSize(new Dimension(700, 300));
-    	questionTextLabel=new JLabel("This is a question for a student to answer to choose");
+    	questionTextLabel=new JLabel("This is a question for a student to answer to chooseThis is a question for a student to answer to chooseThis is a question for a student to answer to choose");
     	questionPanel.add(questionTextLabel);
     	return questionPanel;
     }
+
+  private JLabel addQuestionTitle(String questionTitle) {
+    JLabel questionTextLabel;
+    questionTextLabel = new JLabel(questionTitle);
+    return questionTextLabel;
+	}
 	
 	/**
      * Creates the navigate panel
