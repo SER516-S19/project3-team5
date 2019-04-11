@@ -21,10 +21,6 @@ public class StudentUI {
         studentApp.setTitle("Student Quiz Taker");
         StudentSelectQuiz studentSelectQuiz = new StudentSelectQuiz(this);
         studentApp.setContentPane(studentSelectQuiz);
-
-
-        //studentApp.add(new AttemptQuestionPanel());
-
         studentApp.pack();
         studentApp.setLocationRelativeTo(null);
         studentApp.setVisible(true);

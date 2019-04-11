@@ -23,6 +23,16 @@ public class StudentSelectQuiz extends JPanel implements ActionListener {
 	 // Jlabel to show the files user selects 
     static JLabel l;
     private StudentUI student;
+
+    public static String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    static String path;
 //    JFrame studentFrame;
     // a default constructor 
     StudentSelectQuiz(StudentUI studentUI)
@@ -52,8 +62,8 @@ public class StudentSelectQuiz extends JPanel implements ActionListener {
         // add panel to the frame
         p.add(l);
         this.add(p, BorderLayout.CENTER);
-    } 
-  
+    }
+
 
     public void actionPerformed(ActionEvent evt)
     { 
@@ -86,7 +96,10 @@ public class StudentSelectQuiz extends JPanel implements ActionListener {
                  //this.add(new StartQuizPanel());
                 // this.revalidate();
                 // this.repaint();
-                 l.setText(j.getSelectedFile().getAbsolutePath()); 
+                 l.setText(j.getSelectedFile().getAbsolutePath());
+                 path = j.getSelectedFile().getAbsolutePath();
+                 setPath(path);
+                 System.out.println(j.getSelectedFile().getAbsolutePath());
              } 
              // if the user cancelled the operation 
              else
