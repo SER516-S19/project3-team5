@@ -18,12 +18,11 @@ import javax.swing.SwingUtilities;
 public class QuizCompletedPanel{
 	public QuizCompletedPanel(JFrame studentFrame){
 		super();
-		this.studentFrame=studentFrame;
 		JPanel quizcompletedpanel = new JPanel();
 		JLabel label = new JLabel("Quiz has been completed");
         quizcompletedpanel.setSize(800, 600);
         quizcompletedpanel.add(label);
-        this.add(quizcompletedpanel, BorderLayout.CENTER);
+
 
 
 	}
