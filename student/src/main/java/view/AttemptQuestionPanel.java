@@ -16,7 +16,7 @@ import javax.swing.*;
 
 /**
  * Class that provides UI for student to attempt quiz
- * @author Archana Madhavan, Harika Kolli,narenkumarkonchada, Cecilia La Place
+ * @author Archana Madhavan, Harika Kolli,narenkumarkonchada, Cecilia La Place, David Lahtinen
  * @version 1.2
  * @since 4/11/2019
  *
@@ -105,8 +105,10 @@ public class AttemptQuestionPanel extends JPanel{
         });
 		submitButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                if (checkAnswer())
-                    System.exit(0);//this.student.openQuizCompletePage();
+                if (checkAnswer()) {
+                    student.endQuizPage();
+                    return;
+                }
                 getValuestoUpdate();
             }
         });
@@ -124,6 +126,7 @@ public class AttemptQuestionPanel extends JPanel{
         for (int i = 0; i < ANSWERLENGTH; i++){
             if (radioButtons[i].isSelected()){
                 if (radioButtons[i].getText().equals(current.getCorrectAnswer()))
+                    System.out.println("CORRECT!");
                     tracker[questionID] = true;
             }
         }

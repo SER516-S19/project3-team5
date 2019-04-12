@@ -8,24 +8,24 @@ import javax.swing.SwingUtilities;
 
 /**
  *
- * @author Siva Pranav Mandadi,
+ * Displays after a quiz is completed.
+ *
+ * @author Siva Pranav Mandadi, David Lahtinen
  * @version 1.1
  * 
  */
 
 
 //call the constructor for the panel
-public class QuizCompletedPanel{
-	public QuizCompletedPanel(JFrame studentFrame){
-		super();
-		JPanel quizcompletedpanel = new JPanel();
+public class QuizCompletedPanel extends JPanel{
+    private StudentUI student;
+	public QuizCompletedPanel(StudentUI studentFrame){
+        super();
+        student = studentFrame;
+	    System.out.println("COMPLETED!!!");
 		JLabel label = new JLabel("Quiz has been completed");
-        quizcompletedpanel.setSize(800, 600);
-        quizcompletedpanel.add(label);
-
-
-
+        add(label);
+		setOpaque(true);
+		setVisible(true);
 	}
-
-
 }
