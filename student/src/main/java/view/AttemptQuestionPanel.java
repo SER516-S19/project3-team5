@@ -16,9 +16,9 @@ import javax.swing.*;
 
 /**
  * Class that provides UI for student to attempt quiz
- * @author Archana Madhavan, Harika Kolli,narenkumarkonchada
- * @version 1.1
- * @since 4/4/2019
+ * @author Archana Madhavan, Harika Kolli,narenkumarkonchada, Cecilia La Place
+ * @version 1.2
+ * @since 4/11/2019
  *
  */
 public class AttemptQuestionPanel extends JPanel{
@@ -106,7 +106,7 @@ public class AttemptQuestionPanel extends JPanel{
 		submitButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 if (checkAnswer())
-                    System.exit(0);
+                    System.exit(0);//this.student.openQuizCompletePage();
                 getValuestoUpdate();
             }
         });

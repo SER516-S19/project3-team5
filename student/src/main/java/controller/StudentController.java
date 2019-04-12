@@ -10,6 +10,14 @@ import java.util.ArrayList;
 import main.java.model.Question;
 import main.java.model.QuestionImpl;
 
+/**
+ * Class that handles JSON -> DAO work
+ * @author Cecilia La Place
+ * @version 1.0
+ * @since 4/11/2019
+ *
+ */
+
 public class StudentController {
 	QuestionImpl quiz;
 
@@ -24,13 +32,10 @@ public class StudentController {
 			for (int i = 0; i < jQuestions.size(); i++) {
 	            JSONObject jQues = (JSONObject) jQuestions.get(i);
 	            String title = (String) jQues.get("title");
-	            System.out.println(title);
 				ArrayList options = (ArrayList) jQues.get("options");
-				System.out.println(options.get(0));
-				System.out.println(options.get(0).toString());
 				ArrayList<String> opt = new ArrayList<String>();
 				for(int k=0;k<options.size();k++)
-						opt.add(options.get(k).toString());
+					opt.add(options.get(k).toString());
 				String answer = (String) jQues.get("correctAnswer");
 	            Question q = new Question(title, opt, answer);
 	            questions.add(q);
