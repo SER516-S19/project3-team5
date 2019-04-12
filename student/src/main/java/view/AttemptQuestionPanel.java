@@ -106,7 +106,6 @@ public class AttemptQuestionPanel extends JPanel{
         });
 		submitButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                System.out.println(checkAnswer());
                 if (checkAnswer()) {
                     student.endQuizPage();
                     return;
@@ -144,7 +143,7 @@ public class AttemptQuestionPanel extends JPanel{
      * Action listener function to update labels and radio buttons
      */
 	public void getValuestoUpdate(){
-        try {
+
             do{
                 this.questionID++;
                 if (this.questionID >= this.questions.getSize()){
@@ -158,10 +157,7 @@ public class AttemptQuestionPanel extends JPanel{
             for (int i = 0; i < ANSWERLENGTH; i++){
                 this.radioButtons[i].setText(question.getOptions().get(i));
             }
-        } catch (Exception e1) {
-            System.out.println(e1);
-            System.out.println("Exception has been occured on submit");
-        }
+
     }
 
     /**
