@@ -134,8 +134,12 @@ public class ProfessorController {
                 String correctAnswer = null;
 
                 if(question == null || question.isEmpty()){
-                    JOptionPane.showMessageDialog(null, "Question can not be empty. " +
-                            "Please enter the Question");
+                    if(quizQuestionnaire.getQuestions() == null || quizQuestionnaire.getQuestions().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Questions can not be empty. " +
+                                "Please enter atleast one question Question");
+                    }else{
+                        saveQuiz();
+                    }
                 }else if(checkOptionsEmpty(option1, option2, option3, option4)){
                     JOptionPane.showMessageDialog(null, "Options can not be empty." +
                             "Please fill for all the Options");
@@ -144,13 +148,7 @@ public class ProfessorController {
                 }else{
                     correctAnswer = getCorrectAnswer();
                     saveQuestion(question, option1, option2, option3, option4, correctAnswer);
-                    JsonUtility.writeToJson(quizQuestionnaire, quizTitle);
-                    JOptionPane.showMessageDialog(null, "Quiz successfully created by name "
-                            + quizTitle + ".json");
-                    professorUI.getContentPane().invalidate();
-                    professorWelcomeUI.invalidateElements();
-                    professorUI.setContentPane(professorWelcomeUI.getWelcomeProfessorPanel());
-                    professorUI.getContentPane().revalidate();
+                    saveQuiz();
                 }
             }
         });
@@ -185,6 +183,16 @@ public class ProfessorController {
                 }
             }
         });
+    }
+
+    private void saveQuiz(){
+        JsonUtility.writeToJson(quizQuestionnaire, quizTitle);
+        JOptionPane.showMessageDialog(null, "Quiz successfully created by name "
+                + quizTitle + ".json");
+        professorUI.getContentPane().invalidate();
+        professorWelcomeUI.invalidateElements();
+        professorUI.setContentPane(professorWelcomeUI.getWelcomeProfessorPanel());
+        professorUI.getContentPane().revalidate();
     }
 
     private boolean checkOptionsEmpty(String option1, String option2, String option3, String option4){
