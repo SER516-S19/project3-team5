@@ -6,12 +6,11 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.*;
+
 import java.util.ArrayList;
-import java.util.List;
 import main.java.model.Question;
 import main.java.model.QuestionImpl;
-
-import javax.swing.*;
 
 
 /**
@@ -40,17 +39,19 @@ public class AttemptQuestionPanel extends JPanel{
 		super();
 		this.student = student;
         this.questions = this.student.getQuiz();
-        student.studentApp.setSize(800, 600);
-        student.studentApp.revalidate();
-        student.studentApp.repaint();
+        this.student.studentApp.setSize(800, 600);
+        this.student.studentApp.revalidate();
+        this.student.studentApp.repaint();
+
         JScrollPane answersPanel = new JScrollPane();
-        radioButtons = new JRadioButton[ANSWERLENGTH];
+        this.radioButtons = new JRadioButton[ANSWERLENGTH];
         ButtonGroup answerGroup = setRadioButtons();
         JPanel questionPanel = addQuestionLabelPanel();
-        JPanel navigateButtonPanel = addnavigateButtonPanel();
+        JPanel navigateButtonPanel = addNavigateButtonPanel();
         for (int i = 0; i < ANSWERLENGTH; i++){
-            questionPanel.add(radioButtons[i]);
+            questionPanel.add(this.radioButtons[i]);
         }
+
         this.add(questionPanel, BorderLayout.NORTH);
         this.add(answersPanel, BorderLayout.CENTER);
         this.add(navigateButtonPanel, BorderLayout.SOUTH);
@@ -59,10 +60,13 @@ public class AttemptQuestionPanel extends JPanel{
         tracker = new boolean[this.questions.getSize()];
 	}
 
+    /**
+     * Initializes the radio buttons and group
+     * @return button group
+     */
     private ButtonGroup setRadioButtons(){
         ButtonGroup group = new ButtonGroup();
         ArrayList<String> question = this.questions.getQuestion(this.questionID).getOptions();
-        System.out.println(question.get(0));
         for (int i = 0; i < ANSWERLENGTH; i++){
             this.radioButtons[i] = new JRadioButton(question.get(i));
             group.add(this.radioButtons[i]);
@@ -74,13 +78,12 @@ public class AttemptQuestionPanel extends JPanel{
      * Creates the question panel
      * @return questionPanel
      */
-	private JPanel addQuestionLabelPanel()
-    {
-		JPanel questionPanel=new JPanel();
+	private JPanel addQuestionLabelPanel(){
+		JPanel questionPanel = new JPanel();
 		questionPanel.setPreferredSize(new Dimension(700, 300));
-	    questionLabel=new JLabel();
+	    questionLabel = new JLabel();
         String question = this.questions.getQuestion(this.questionID).getTitle();
-    	questionLabel.setText(question);
+    	this.questionLabel.setText(question);
     	questionPanel.add(questionLabel);
     	return questionPanel;
     }
@@ -89,15 +92,13 @@ public class AttemptQuestionPanel extends JPanel{
      * Creates the navigate panel
      * @return navigateButtonPanel
      */
-	private JPanel addnavigateButtonPanel()
-	{
+	private JPanel addNavigateButtonPanel(){
 		JPanel navigateButtonPanel = new JPanel();
 		navigateButtonPanel.setLayout(new GridLayout(2, 2));
 		navigateButtonPanel.setPreferredSize(new Dimension(400, 100));
-		JButton giveUpButton=addNavigateButton(GIVEUP);
-		JButton submitButton=addNavigateButton(SUBMIT);
+		JButton giveUpButton = addNavigateButton(GIVEUP);
+		JButton submitButton = addNavigateButton(SUBMIT);
 
-		
 		giveUpButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 System.exit(0);
@@ -120,7 +121,7 @@ public class AttemptQuestionPanel extends JPanel{
 	}
 
     /**
-     * Check user submitted answer
+     * Check user submitted answer and overall questions answered
      */
     public boolean checkAnswer(){
         Question current = this.questions.getQuestion(this.questionID);
@@ -132,8 +133,9 @@ public class AttemptQuestionPanel extends JPanel{
             }
         }
         for (int j = 0; j < this.questions.getSize(); j++){
-            if(tracker[j] == false)
+            if(!tracker[j]){
                 return false;
+            }
         }
         return true;
     }
@@ -141,20 +143,20 @@ public class AttemptQuestionPanel extends JPanel{
     /**
      * Action listener function to update labels and radio buttons
      */
-	public void getValuestoUpdate()
-    {
+	public void getValuestoUpdate(){
         try {
             do{
                 this.questionID++;
-                if (this.questionID >= this.questions.getSize())
+                if (this.questionID >= this.questions.getSize()){
                     this.questionID = 0;
-            } while (tracker[questionID]);
+                }
+            } while (this.tracker[questionID]);
 
             Question question = this.questions.getQuestion(this.questionID);
             String title = question.getTitle();
             this.questionLabel.setText(title);
             for (int i = 0; i < ANSWERLENGTH; i++){
-                radioButtons[i].setText(question.getOptions().get(i));
+                this.radioButtons[i].setText(question.getOptions().get(i));
             }
         } catch (Exception e1) {
             System.out.println(e1);
