@@ -22,7 +22,6 @@ public class QuizCompletedPanel extends JPanel{
 	public QuizCompletedPanel(StudentUI studentFrame){
         super();
         student = studentFrame;
-	    System.out.println("COMPLETED!!!");
 		JLabel label = new JLabel("Quiz has been completed");
         add(label);
 		setOpaque(true);
