@@ -105,6 +105,7 @@ public class AttemptQuestionPanel extends JPanel{
         });
 		submitButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
+                System.out.println(checkAnswer());
                 if (checkAnswer()) {
                     student.endQuizPage();
                     return;
@@ -125,13 +126,13 @@ public class AttemptQuestionPanel extends JPanel{
         Question current = this.questions.getQuestion(this.questionID);
         for (int i = 0; i < ANSWERLENGTH; i++){
             if (radioButtons[i].isSelected()){
-                if (radioButtons[i].getText().equals(current.getCorrectAnswer()))
-                    System.out.println("CORRECT!");
+                if (radioButtons[i].getText().equals(current.getCorrectAnswer())){
                     tracker[questionID] = true;
+                }
             }
         }
         for (int j = 0; j < this.questions.getSize(); j++){
-            if(!tracker[j])
+            if(tracker[j] == false)
                 return false;
         }
         return true;
