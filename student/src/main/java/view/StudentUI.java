@@ -42,6 +42,15 @@ public class StudentUI {
         studentApp.revalidate();
     }
 
+    public void endQuizPage() {
+        System.out.println("Ending Quiz now!");
+        QuizCompletedPanel endQuizPanel = new QuizCompletedPanel(this);
+        studentApp.setContentPane(endQuizPanel);
+        studentApp.repaint();
+        studentApp.revalidate();
+        System.out.println("REVALIDATED!!!");
+    }
+
     public void setQuiz(QuestionImpl quiz){
         this.quiz = quiz;
     }
