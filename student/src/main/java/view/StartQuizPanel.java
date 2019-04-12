@@ -44,5 +44,4 @@ public class StartQuizPanel extends JPanel{
             }
         });
     }
-
 }

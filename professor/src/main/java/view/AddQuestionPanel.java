@@ -3,6 +3,13 @@ package main.java.view;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Class to create AddQuesiton Panel
+ * @author narenkumarkonchada, Aravinda Sai Kondamari, Cecilia La Place
+ * @version 1.1
+ * @since 04/02/2019
+ *
+ */
 public class AddQuestionPanel {
     private JPanel questionPanel;
     private JLabel questionLabel;
@@ -20,6 +27,10 @@ public class AddQuestionPanel {
     private JButton addQuestion;
     private JLabel optionLabel;
 
+    /**
+     * Constructor for AddQuestionPanel
+     *
+     */
     public AddQuestionPanel() {
         group = new ButtonGroup();
         group.add(optionSelector1);
@@ -28,6 +39,10 @@ public class AddQuestionPanel {
         group.add(optionSelector4);
     }
 
+    /**
+     *Getter and Setter methods for each Component in the Panel
+     *
+     */
     public JPanel getQuestionPanel() {
         return questionPanel;
     }
@@ -140,6 +155,9 @@ public class AddQuestionPanel {
         this.optionLabel = optionLabel;
     }
 
+    /**
+     * method for invalidating elements
+     */
     public void invalidateElements() {
         questionInput.setText("");
         optionInput1.setText("");

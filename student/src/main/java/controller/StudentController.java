@@ -20,6 +20,12 @@ import main.java.model.QuestionImpl;
 public class StudentController {
 	QuestionImpl quiz;
 
+	/**
+	 *  Method for Updating the Quiz Page
+	 * @return - the QuestionImpl Object
+	 * @throws Exception
+	 */
+
 	public static QuestionImpl updateQuizPage() throws Exception {
 		try{
 			JSONParser parser = new JSONParser();

@@ -20,84 +20,75 @@ import javax.swing.filechooser.FileSystemView;
  * 
  */
 public class StudentSelectQuiz extends JPanel implements ActionListener {
-	 // Jlabel to show the files user selects 
-    static JLabel l;
+
+    static JLabel messageLabel;
+    static String filePath;
     private StudentUI student;
 
+    /**
+     *  Getter for filepath
+     * @return
+     */
     public static String getPath() {
-        return path;
+        return filePath;
     }
 
+    /**
+     * Setter for filepath
+     * @param path
+     */
     public void setPath(String path) {
-        this.path = path;
+        this.filePath = path;
     }
 
-    static String path;
-//    JFrame studentFrame;
-    // a default constructor 
+    /**
+     * Default Constructor
+     *
+     * @param studentUI - get the StudentUI object
+     */
     StudentSelectQuiz(StudentUI studentUI)
     {
         super();
 
         this.student=studentUI;
         // button to open open dialog
-        JButton button2 = new JButton("Select Quiz");
-
-        // make an object of the class file chooser
-        //StudentSelectQuiz f1 = new StudentSelectQuiz();
-
-        // add action listener to the button to capture user
-        // response on buttons
-        button2.addActionListener(this);
-
-        // make a panel to add the buttons and labels
-        JPanel p = new JPanel();
-
-        // add buttons to the frame
-        p.add(button2);
-
-        // set the label to its initial value
-        l = new JLabel("no file selected");
-
-        // add panel to the frame
-        p.add(l);
-        this.add(p, BorderLayout.CENTER);
+        JButton selectQuizButton = new JButton("Select Quiz");
+        selectQuizButton.addActionListener(this);
+        JPanel selectQuizPanel = new JPanel();
+        selectQuizPanel.add(selectQuizButton);
+        messageLabel = new JLabel("no file selected");
+        selectQuizPanel.add(messageLabel);
+        this.add(selectQuizPanel, BorderLayout.CENTER);
     }
 
-
+    /**
+     * called when select Quiz Button is tapped
+     *
+     * @param evt - triggered by the file select button
+     */
     public void actionPerformed(ActionEvent evt)
     { 
         // if the user presses the save button show the open dialog 
-        String com = evt.getActionCommand(); 
+        String command = evt.getActionCommand();
   
-        if (com.equals("Select Quiz")) { 
-        	 JFileChooser j = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory()); 
-        	  
-             // restrict the user to select files of all types 
-             j.setAcceptAllFileFilterUsed(false); 
-   
-             // set a title for the dialog 
-             j.setDialogTitle("Select a .json file"); 
-   
-             // only allow files of .json extension 
-             FileNameExtensionFilter restrict = new FileNameExtensionFilter("Only .json files", "json"); 
-             j.addChoosableFileFilter(restrict); 
-   
-             // invoke the showsOpenDialog function to show the save dialog 
-             int r = j.showOpenDialog(null); 
-   
-             // if the user selects a file 
-             if (r == JFileChooser.APPROVE_OPTION) { 
-                  student.startQuizPage();
+        if (command.equals("Select Quiz")) {
+            JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+            fileChooser.setAcceptAllFileFilterUsed(false);
+            fileChooser.setDialogTitle("Select a .json file");
 
-                 l.setText(j.getSelectedFile().getAbsolutePath());
-                 path = j.getSelectedFile().getAbsolutePath();
-                 setPath(path);
-                 System.out.println(j.getSelectedFile().getAbsolutePath());
-             } 
-             // if the user cancelled the operation 
-             else
-                 l.setText("the user cancelled the operation"); 
+             // only allow files of .json extension 
+            FileNameExtensionFilter restrict = new FileNameExtensionFilter("Only .json files", "json");
+            fileChooser.addChoosableFileFilter(restrict);
+            int fileChooserVal = fileChooser.showOpenDialog(null);
+   
+            if (fileChooserVal == JFileChooser.APPROVE_OPTION) {
+                 student.startQuizPage();
+                 messageLabel.setText(fileChooser.getSelectedFile().getAbsolutePath());
+                 filePath = fileChooser.getSelectedFile().getAbsolutePath();
+                 setPath(filePath);
+            }
+            else
+                messageLabel.setText("the user cancelled the operation");
         } 
     } 
 }

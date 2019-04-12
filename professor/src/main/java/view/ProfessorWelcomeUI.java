@@ -3,12 +3,23 @@ package main.java.view;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Class to create ProfessorWelcomeUI Panel
+ * @author narenkumarkonchada, Aravinda Sai Kondamari, Cecilia La Place
+ * @version 1.1
+ * @since 04/02/2019
+ *
+ */
 public class ProfessorWelcomeUI {
     private JLabel inputQuiz;
     private JTextField quizTitle;
     private JPanel welcomeProfessorPanel;
     private JButton createQuiz;
 
+    /**
+     *Getter and Setter methods for each Component in the Panel
+     *
+     */
     public JLabel getInputQuiz() {
         return inputQuiz;
     }

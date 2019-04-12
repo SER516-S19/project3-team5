@@ -33,21 +33,21 @@ public class ProfessorController {
         this.addQuestionPanel = addQuestionPanel;
         this.quizQuestionnaire = quizQuestionnaire;
 
-        //setup Frame UI
+        /** setup Frame UI */
         professorUI.setTitle("Quiz Maker");
         professorUI.setPreferredSize(new Dimension(700, 500));
         professorUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         professorUI.setContentPane(professorWelcomeUI.getWelcomeProfessorPanel());
 
-        //Display the Frame
+        /** Display the Frame */
         professorUI.pack();
         professorUI.setLocationRelativeTo(null);
         professorUI.setVisible(true);
 
-        //ProfessorWelcomeUI Listener methods
+        /** ProfessorWelcomeUI Listener methods */
         createQuizListener();
 
-        //AddQuestionPanel Listener methods
+        /** AddQuestionPanel Listener methods */
         option1Listener();
         option2Listener();
         option3Listener();
@@ -56,6 +56,9 @@ public class ProfessorController {
         addQuestionListener();
     }
 
+    /**
+     * This method acts as a Listner for Creating a quiz button
+     */
     private void createQuizListener(){
         professorWelcomeUI.getCreateQuiz().addActionListener(new ActionListener() {
             @Override
@@ -74,6 +77,9 @@ public class ProfessorController {
         });
     }
 
+    /**
+     * This method acts as a Listner for first answer Option
+     */
     private void option1Listener() {
         addQuestionPanel.getOptionSelector1().addActionListener(new ActionListener() {
             @Override
@@ -86,6 +92,9 @@ public class ProfessorController {
         });
     }
 
+    /**
+     * This method acts as a Listner for second answer Option
+     */
     private void option2Listener() {
         addQuestionPanel.getOptionSelector2().addActionListener(new ActionListener() {
             @Override
@@ -98,6 +107,9 @@ public class ProfessorController {
         });
     }
 
+    /**
+     * This method acts as a Listner for third answer Option
+     */
     private void option3Listener() {
         addQuestionPanel.getOptionSelector3().addActionListener(new ActionListener() {
             @Override
@@ -110,6 +122,9 @@ public class ProfessorController {
         });
     }
 
+    /**
+     * This method acts as a Listner for fourth answer Option
+     */
     private void option4Listener() {
         addQuestionPanel.getOptionSelector4().addActionListener(new ActionListener() {
             @Override
@@ -122,6 +137,9 @@ public class ProfessorController {
         });
     }
 
+    /**
+     * This method acts as a Listner for saving a quiz button
+     */
     private void saveQuizListener() {
         addQuestionPanel.getSaveQuiz().addActionListener(new ActionListener() {
             @Override
@@ -153,7 +171,9 @@ public class ProfessorController {
             }
         });
     }
-
+    /**
+     * This method acts as a Listner for Add Question button
+     */
     private void addQuestionListener() {
         addQuestionPanel.getAddQuestion().addActionListener(new ActionListener() {
             @Override
@@ -185,6 +205,9 @@ public class ProfessorController {
         });
     }
 
+    /**
+     * saving a quiz
+     */
     private void saveQuiz(){
         JsonUtility.writeToJson(quizQuestionnaire, quizTitle);
         JOptionPane.showMessageDialog(null, "Quiz successfully created by name "
@@ -195,6 +218,9 @@ public class ProfessorController {
         professorUI.getContentPane().revalidate();
     }
 
+    /**
+     * checking if none of the answer options are filled before saving a quiz or adding next question
+     */
     private boolean checkOptionsEmpty(String option1, String option2, String option3, String option4){
         if(option1 == null || option1.isEmpty() || option2 == null || option2.isEmpty() ||
                 option3 == null || option3.isEmpty() || option4 == null || option4.isEmpty()){
@@ -203,6 +229,9 @@ public class ProfessorController {
         return false;
     }
 
+    /**
+     * checking if nothing is selected before saving a quiz or adding next question
+     */
     private boolean selectedNothing(){
         if(!addQuestionPanel.getOptionSelector1().isSelected() && !addQuestionPanel.getOptionSelector2().isSelected()&&
                 !addQuestionPanel.getOptionSelector3().isSelected() && !addQuestionPanel.getOptionSelector4().isSelected()){
@@ -211,6 +240,9 @@ public class ProfessorController {
         return false;
     }
 
+    /**
+     * getting a correct answer
+     */
     private String getCorrectAnswer(){
         String correctAnswer = null;
         if(addQuestionPanel.getOptionSelector1().isSelected()){
@@ -225,7 +257,9 @@ public class ProfessorController {
         return correctAnswer;
     }
 
-
+    /**
+     * saving a question created by the professor
+     */
     private void saveQuestion(String question, String option1, String option2, String option3,
                               String option4, String correctAnswer) {
         Question questionModel = new Question();
@@ -238,26 +272,43 @@ public class ProfessorController {
         quizQuestionnaire.setQuestion(questionModel);
     }
 
+    /**
+     * getter method for professorUI frame
+     */
     public JFrame getProfessorUI() {
         return professorUI;
     }
 
+    /**
+     * setter method for professorUI frame
+     */
     public void setProfessorUI(JFrame professorUI) {
         this.professorUI = professorUI;
     }
 
+    /**
+     * getter method for professorWelcomeUI
+     */
     public ProfessorWelcomeUI getProfessorWelcomeUI() {
         return professorWelcomeUI;
     }
-
+    /**
+     * setter method for professorWelcomeUI
+     */
     public void setProfessorWelcomeUI(ProfessorWelcomeUI professorWelcomeUI) {
         this.professorWelcomeUI = professorWelcomeUI;
     }
 
+    /**
+     * getter method for AddQuestionPanel
+     */
     public AddQuestionPanel getAddQuestionPanel() {
         return addQuestionPanel;
     }
 
+    /**
+     * setter method for AddQuestionPanel
+     */
     public void setAddQuestionPanel(AddQuestionPanel addQuestionPanel) {
         this.addQuestionPanel = addQuestionPanel;
     }

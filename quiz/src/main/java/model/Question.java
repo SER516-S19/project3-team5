@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * @author      Koushik Kotamraju, Cecilia La Place, Aravinda Sai Kondamari
  * @version     1.0
- * @since       1.0
+ * @since       04/02/2019
  */
 public class Question {
     private String title;
