@@ -88,14 +88,8 @@ public class StudentSelectQuiz extends JPanel implements ActionListener {
    
              // if the user selects a file 
              if (r == JFileChooser.APPROVE_OPTION) { 
-                 // set the label to the path of the selected file
-//                 this.studentFrame.revalidate();
-//                 this.studentFrame.repaint();
-//
-                 student.startQuizPage();
-                 //this.add(new StartQuizPanel());
-                // this.revalidate();
-                // this.repaint();
+                  student.startQuizPage();
+
                  l.setText(j.getSelectedFile().getAbsolutePath());
                  path = j.getSelectedFile().getAbsolutePath();
                  setPath(path);

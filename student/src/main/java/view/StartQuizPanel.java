@@ -5,20 +5,23 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-///*
-// *       Created by IntelliJ IDEA.
-//  *      User:Arch, narenkumarkonchada
-//   *     Date:4/10/2019
-//        Time:7:19PM
-//        --%>
-
+/**
+ * Class that provides UI for starting the quiz
+ * @author Archana Madhavan,narenkumarkonchada
+ * @version 1.1
+ * @since 4/10/2019
+ *
+ */
 public class StartQuizPanel extends JPanel{
     private StudentUI student;
+
     public StartQuizPanel(StudentUI studentUI) {
         super();
         this.student = studentUI;
         String name ="start quiz";
         JButton startButton = new JButton(name);
+
+        //sets the format for start button
         startButton.setBounds(50, 100, 95, 30);
         startButton.setLayout(null);
         startButton.setVisible(true);
