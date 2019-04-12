@@ -2,6 +2,8 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import javax.swing.*;
+import main.java.model.Question;
+import main.java.model.QuestionImpl;
 
 /**
  *
@@ -14,6 +16,8 @@ import javax.swing.*;
 public class StudentUI {
 
     JFrame studentApp = new JFrame();
+    private QuestionImpl quiz;
+
     public StudentUI(){
 
         studentApp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -38,8 +42,17 @@ public class StudentUI {
         studentApp.revalidate();
     }
 
+    public void setQuiz(QuestionImpl quiz){
+        this.quiz = quiz;
+    }
+
+    public QuestionImpl getQuiz(){
+        return this.quiz;
+    }
+
     public static void main(String[] args){
 
         new StudentUI();
     }
+
 }

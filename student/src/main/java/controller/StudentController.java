@@ -7,40 +7,36 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
+import main.java.model.Question;
+import main.java.model.QuestionImpl;
 
 public class StudentController {
+	QuestionImpl quiz;
 
-	public static Map<Integer,ArrayList> updateQuizPage() throws Exception {
+	public static QuestionImpl updateQuizPage() throws Exception {
 		System.out.println("In update Quiz");
-		JSONParser parser = new JSONParser();
-
-		Map<Integer,ArrayList> questionMap = new HashMap<>();
-		try {
+		try{
+			JSONParser parser = new JSONParser();
 			String path = view.StudentSelectQuiz.getPath();
-			Object obj = parser.parse(new FileReader(path));
-			JSONObject jsonObject = (JSONObject) obj;
-
-			JSONArray questions = (JSONArray) jsonObject.get("questions");
-
-			for (int i = 0; i < questions.size(); i++) {
-                ArrayList<String> al = new ArrayList<>();
-				JSONObject question = (JSONObject) questions.get(i);
-				String questionTitle = (String) question.get("title");
-				ArrayList options = (ArrayList) question.get("options");
-				String correctAnswer = (String) question.get("correctAnswer");
-
-				al.add(questionTitle);
+			JSONObject jsonObject = (JSONObject) parser.parse(new FileReader(path));
+			JSONArray jQuestions = (JSONArray) jsonObject.get("questions");
+			ArrayList<Question> questions = new ArrayList<>();
+			for (int i = 0; i < jQuestions.size(); i++) {
+	            JSONObject jQues = (JSONObject) jQuestions.get(i);
+	            String title = (String) jQues.get("title");
+	            System.out.println(title);
+				ArrayList options = (ArrayList) jQues.get("options");
+				System.out.println(options.get(0));
+				System.out.println(options.get(0).toString());
+				ArrayList<String> opt = new ArrayList<String>();
 				for(int k=0;k<options.size();k++)
-					al.add(options.get(k).toString());
-				al.add(correctAnswer);
-				questionMap.put(i,al);
-            }
-
+						opt.add(options.get(k).toString());
+				String answer = (String) jQues.get("correctAnswer");
+	            Question q = new Question(title, opt, answer);
+	            questions.add(q);
+	        }
+		        return new QuestionImpl(questions);
 		}
-
 		catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -48,6 +44,6 @@ public class StudentController {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		return questionMap;
+		return null;
 	}
 }

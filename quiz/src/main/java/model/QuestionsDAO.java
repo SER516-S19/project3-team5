@@ -25,6 +25,12 @@ public interface QuestionsDAO {
     public ArrayList<Question> getQuestions();
 
     /**
+     * Get size of list of questions
+     *
+     * @return size
+     */
+    public int getSize();
+    /**
      * Set question at end of array
      *
      * @param question

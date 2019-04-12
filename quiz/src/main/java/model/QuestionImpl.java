@@ -45,6 +45,14 @@ public class QuestionImpl implements QuestionsDAO{
     }
 
     /**
+     * Get size of list of questions
+     *
+     * @return size
+     */
+    public int getSize(){
+        return this.questions.size();
+    }
+    /**
      * Set question at location index (overload)
      *
      * @param question

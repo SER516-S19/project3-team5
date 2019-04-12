@@ -4,8 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Map;
 
 ///*
 // *       Created by IntelliJ IDEA.
@@ -19,7 +17,6 @@ public class StartQuizPanel extends JPanel{
     public StartQuizPanel(StudentUI studentUI) {
         super();
         this.student = studentUI;
-//        this.add(addStartButton());
         String name ="start quiz";
         JButton startButton = new JButton(name);
         startButton.setBounds(50, 100, 95, 30);
@@ -33,7 +30,7 @@ public class StartQuizPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-//                    AttemptQuestionPanel.getValuestoUpdate();
+                    student.setQuiz(controller.StudentController.updateQuizPage());
                     student.openAttemptQuizPage();
 
                 }
@@ -44,40 +41,5 @@ public class StartQuizPanel extends JPanel{
             }
         });
     }
-
-
-
-
-    /**
-     * Creates custom start buttons
-     * @return startButton
-     */
-//    public JButton addStartButton(){
-//        String name ="start quiz";
-//        Color btnColor = null;
-//        btnColor = Color.RED;
-//
-//        JButton startButton = new JButton(name);
-//        startButton.setBounds(50, 100, 95, 30);
-//        startButton.setLayout(null);
-//        startButton.setVisible(true);
-//        startButton.setBackground(btnColor);
-//        startButton.setOpaque(true);
-//        startButton.setBorderPainted(false);
-//        startButton.addActionListener(new ActionListener()
-//        {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                try {
-//                    AttemptQuestionPanel.getValuestoUpdate();
-//                }
-//                catch(Exception ae)
-//                {
-//                    ae.printStackTrace();
-//                }
-//            }
-//        });
-//        return startButton;
-//    }
 
 }

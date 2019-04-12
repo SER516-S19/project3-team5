@@ -7,9 +7,9 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import main.java.model.Question;
+import main.java.model.QuestionImpl;
 
 import javax.swing.*;
 
@@ -23,56 +23,65 @@ import javax.swing.*;
  */
 public class AttemptQuestionPanel extends JPanel{
 
-    String questionTitle;
-    public static int questionID = 0;
 	private static final int SUBMIT = 0;
 	private static final int GIVEUP = 1;
 	private static final int ANSWERLENGTH = 4;
-	private char answerOptions[]= {'A','B','C','D'};
-	private StudentUI student;
+
+    private int questionID = 0;
+
+    private JRadioButton[] radioButtons;
+    private JLabel questionLabel;
+	
+    private StudentUI student;
+    private QuestionImpl questions;
+    private boolean[] tracker;
+
 	AttemptQuestionPanel(StudentUI student) {
 		super();
 		this.student = student;
-        getValuestoUpdate();
+        this.questions = this.student.getQuiz();
+        student.studentApp.setSize(800, 600);
         student.studentApp.revalidate();
         student.studentApp.repaint();
-//        this.setLayout(new BorderLayout());
+        JScrollPane answersPanel = new JScrollPane();
+        radioButtons = new JRadioButton[ANSWERLENGTH];
+        ButtonGroup answerGroup = setRadioButtons();
         JPanel questionPanel = addQuestionLabelPanel();
         JPanel navigateButtonPanel = addnavigateButtonPanel();
-
-        JScrollPane answersPanel = new JScrollPane();
-        AnswerOptionsPanel optionPanels[]= new AnswerOptionsPanel[ANSWERLENGTH];
-        ButtonGroup answerGroup = new ButtonGroup();
-        
-        //grouping radio buttons and adding labels to question panel.
         for (int i = 0; i < ANSWERLENGTH; i++){
-        	optionPanels[i] = new AnswerOptionsPanel();
-            answerGroup.add(optionPanels[i].getRadioButton());
-            //int count = i+1;
-            optionPanels[i].getRadioButton().setText(answer.get(i));
-            questionPanel.add(optionPanels[i]);
+            questionPanel.add(radioButtons[i]);
         }
-        
         this.add(questionPanel, BorderLayout.NORTH);
         this.add(answersPanel, BorderLayout.CENTER);
         this.add(navigateButtonPanel, BorderLayout.SOUTH);
-	  
         
+        // Must initialize correct answer tracker based on question size
+        tracker = new boolean[this.questions.getSize()];
 	}
+
+    private ButtonGroup setRadioButtons(){
+        ButtonGroup group = new ButtonGroup();
+        ArrayList<String> question = this.questions.getQuestion(this.questionID).getOptions();
+        System.out.println(question.get(0));
+        for (int i = 0; i < ANSWERLENGTH; i++){
+            this.radioButtons[i] = new JRadioButton(question.get(i));
+            group.add(this.radioButtons[i]);
+        }
+        return group;
+    }
 	
 	/**
-     * Creates the navigate panel
-     * @return navigateButtonPanel
+     * Creates the question panel
+     * @return questionPanel
      */
 	private JPanel addQuestionLabelPanel()
     {
-
-		JLabel questionTextLabel;
 		JPanel questionPanel=new JPanel();
 		questionPanel.setPreferredSize(new Dimension(700, 300));
-	questionTextLabel=new JLabel();
-	questionTextLabel.setText(questionTitle);
-    	questionPanel.add(questionTextLabel);
+	    questionLabel=new JLabel();
+        String question = this.questions.getQuestion(this.questionID).getTitle();
+    	questionLabel.setText(question);
+    	questionPanel.add(questionLabel);
     	return questionPanel;
     }
 
@@ -96,7 +105,9 @@ public class AttemptQuestionPanel extends JPanel{
         });
 		submitButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                student.openAttemptQuizPage();
+                if (checkAnswer())
+                    System.exit(0);
+                getValuestoUpdate();
             }
         });
 		navigateButtonPanel.add(giveUpButton);
@@ -104,40 +115,49 @@ public class AttemptQuestionPanel extends JPanel{
         
     	return navigateButtonPanel;
 	}
-    ArrayList<String> answer = new ArrayList<>();
 
+    /**
+     * Check user submitted answer
+     */
+    public boolean checkAnswer(){
+        Question current = this.questions.getQuestion(this.questionID);
+        for (int i = 0; i < ANSWERLENGTH; i++){
+            if (radioButtons[i].isSelected()){
+                if (radioButtons[i].getText().equals(current.getCorrectAnswer()))
+                    tracker[questionID] = true;
+            }
+        }
+        for (int j = 0; j < this.questions.getSize(); j++){
+            if(!tracker[j])
+                return false;
+        }
+        return true;
+    }
+
+    /**
+     * Action listener function to update labels and radio buttons
+     */
 	public void getValuestoUpdate()
     {
-
-        ArrayList<String> listNew = new ArrayList<>();
         try {
-            Map<Integer,ArrayList> list = controller.StudentController.updateQuizPage();
-            System.out.println(list);
+            do{
+                this.questionID++;
+                if (this.questionID >= this.questions.getSize())
+                    this.questionID = 0;
+            } while (tracker[questionID]);
 
-            //for(int l=0;l<list.size();l++)
-            //{
-                ArrayList question = new ArrayList(list.get(questionID));
-
-                    for(int k=0;k<question.size();k++)
-                    {
-                        if(k==0)
-                        {
-                            questionTitle = question.get(k).toString();
-                        }
-                        else if(k==1||k==2||k==3||k==4)
-                        {
-                            //answer panel
-                            answer.add(question.get(k).toString());
-
-                        }
-
-                    }
-                questionID++;
-            //}
+            Question question = this.questions.getQuestion(this.questionID);
+            String title = question.getTitle();
+            this.questionLabel.setText(title);
+            for (int i = 0; i < ANSWERLENGTH; i++){
+                radioButtons[i].setText(question.getOptions().get(i));
+            }
         } catch (Exception e1) {
+            System.out.println(e1);
             System.out.println("Exception has been occured on submit");
         }
     }
+
     /**
      * Creates custom navigate buttons
      * @return navigateButton
