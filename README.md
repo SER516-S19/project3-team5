@@ -31,4 +31,4 @@ To edit the view source files using IntelliJ's GUI Designer:
 6. Create/Edit forms (Double click a .form file, or right click, select New > GUI Form )
 7. run ProfessorUI (Through IntelliJ, not command line)
 
-Running ProfessorUI through IntelliJ, in addition to running the program, will transpile the data from the .form file whatever .java file it's bound to so that it can be built with gradle for distribution.
+Running ProfessorUI through IntelliJ, in addition to running the program, will transpile the data from the .form file to whatever .java file it's bound to so that it can be built with gradle for distribution.
