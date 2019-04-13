@@ -28,7 +28,7 @@ To edit the view source files using IntelliJ's GUI Designer:
 3. search for GUI Designer (it should have "settings" next to it) and open it.
 4. select Generate GUI into: Java source code
 5. apply
-6. Create/Edit forms
+6. Create/Edit forms (Double click a .form file, or right click, select New > GUI Form )
 7. run ProfessorUI (Through IntelliJ, not command line)
 
 Running ProfessorUI through IntelliJ, in addition to running the program, will transpile the data from the .form file whatever .java file it's bound to so that it can be built with gradle for distribution.
