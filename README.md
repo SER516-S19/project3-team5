@@ -30,6 +30,6 @@ To edit the view source files using IntelliJ's GUI Designer:
 5. apply
 6. Open AddQuestionPanel.form
 7. Make whatver changes to the view that you want
-8. run ProfessorUI (Through IntelliJ, not gradle)
+8. run ProfessorUI (Through IntelliJ, not command line)
 
 Running ProfessorUI through IntelliJ, in addition to running the program, will transpile the data from the .form file to the .java file so that it can be built with gradle for distribution.
